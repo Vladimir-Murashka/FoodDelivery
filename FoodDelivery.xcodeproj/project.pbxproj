@@ -18,6 +18,8 @@
 		227009F528FDDE8F00FD5ABE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227009F428FDDE8F00FD5ABE /* ProfileViewController.swift */; };
 		227009F728FDDE9A00FD5ABE /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227009F628FDDE9A00FD5ABE /* OrderViewController.swift */; };
 		227009FA28FEB39B00FD5ABE /* BannerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227009F928FEB39B00FD5ABE /* BannerTableViewCell.swift */; };
+		227009FC28FF1BE200FD5ABE /* SceneBuildManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227009FB28FF1BE200FD5ABE /* SceneBuildManager.swift */; };
+		227009FE28FF1C3700FD5ABE /* MenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227009FD28FF1C3700FD5ABE /* MenuPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		227009F428FDDE8F00FD5ABE /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		227009F628FDDE9A00FD5ABE /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 		227009F928FEB39B00FD5ABE /* BannerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerTableViewCell.swift; sourceTree = "<group>"; };
+		227009FB28FF1BE200FD5ABE /* SceneBuildManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneBuildManager.swift; sourceTree = "<group>"; };
+		227009FD28FF1C3700FD5ABE /* MenuPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +112,7 @@
 		227009E528FDDC7400FD5ABE /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				227009FB28FF1BE200FD5ABE /* SceneBuildManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -150,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				227009F028FDDE7800FD5ABE /* MenuViewController.swift */,
+				227009FD28FF1C3700FD5ABE /* MenuPresenter.swift */,
 			);
 			path = MenuViewController;
 			sourceTree = "<group>";
@@ -259,8 +265,10 @@
 				227009D628FDD91300FD5ABE /* FoodDelivery.xcdatamodeld in Sources */,
 				227009F128FDDE7800FD5ABE /* MenuViewController.swift in Sources */,
 				227009EB28FDDD0B00FD5ABE /* TabBarController.swift in Sources */,
+				227009FE28FF1C3700FD5ABE /* MenuPresenter.swift in Sources */,
 				227009CC28FDD91300FD5ABE /* AppDelegate.swift in Sources */,
 				227009F728FDDE9A00FD5ABE /* OrderViewController.swift in Sources */,
+				227009FC28FF1BE200FD5ABE /* SceneBuildManager.swift in Sources */,
 				227009FA28FEB39B00FD5ABE /* BannerTableViewCell.swift in Sources */,
 				227009F528FDDE8F00FD5ABE /* ProfileViewController.swift in Sources */,
 				227009CE28FDD91300FD5ABE /* SceneDelegate.swift in Sources */,
