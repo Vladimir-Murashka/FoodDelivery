@@ -15,17 +15,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         setupRootViewController(windowScene: windowScene)
     }
-    
+
+    func sceneDidEnterBackground(_ scene: UIScene) {
+        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+    }
+}
+
+// MARK: - Private methods
+
+private extension SceneDelegate {
     func setupRootViewController(windowScene: UIWindowScene) {
         let window = UIWindow(windowScene: windowScene)
-        let viewController = TabBarController()
+        let sceneBuildManager: Buildable = SceneBuildManager()
+        let viewController = sceneBuildManager.buildTabBarScreen()
         window.rootViewController = viewController
         window.makeKeyAndVisible()
         self.window = window
-    }
-    
-    func sceneDidEnterBackground(_ scene: UIScene) {
-        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
 }
 
