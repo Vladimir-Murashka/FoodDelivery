@@ -5,4 +5,9 @@
 //  Created by Swift Learning on 19.10.2022.
 //
 
-import Foundation
+struct ProductCellViewModel {
+    let title: String
+    let descpition: String
+    let price: String
+    let imageUrl: String
+}

@@ -5,4 +5,10 @@
 //  Created by Swift Learning on 21.10.2022.
 //
 
-import Foundation
+import UIKit
+
+extension UICollectionViewCell {
+    static var reuseId: String {
+        return String(describing: Self.self)
+    }
+}

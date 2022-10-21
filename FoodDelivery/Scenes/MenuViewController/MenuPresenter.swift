@@ -5,7 +5,9 @@
 //  Created by Swift Learning on 18.10.2022.
 //
 
-protocol MenuPresenterProtocol: AnyObject {}
+protocol MenuPresenterProtocol: AnyObject {
+    func cityButtonViewPressed()
+}
 
 // MARK: - MenuPresenter
 
@@ -25,5 +27,9 @@ final class MenuPresenter {
 
 //MARK: - MenuPresenterExtension
 
-extension MenuPresenter: MenuPresenterProtocol {}
+extension MenuPresenter: MenuPresenterProtocol {
+    func cityButtonViewPressed() {
+        print("cityButtonViewPressed")
+    }
+}
 

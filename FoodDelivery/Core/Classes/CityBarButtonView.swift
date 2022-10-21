@@ -1,5 +1,5 @@
 //
-//  CityBarButtonItem.swift
+//  CityBarButtonView.swift
 //  FoodDelivery
 //
 //  Created by Swift Learning on 18.10.2022.
@@ -7,14 +7,20 @@
 
 import UIKit
 
-final class CityBarButtonItem: UIView {
+final class CityBarButtonView: UIView {
     
     private let cityLabel = make(UILabel()) { label in
-        label.font = .systemFont(ofSize: 17, weight: .medium)
+        label.font = .systemFont(
+            ofSize: 17,
+            weight: .medium
+        )
     }
     
     private let cityImage = make(UIImageView()) { imageView in
-        let image = UIImage(systemName: "chevron.down")
+        let image = UIImage(systemName: "chevron.down")?.withTintColor(
+            .black,
+            renderingMode: .alwaysOriginal
+        )
         imageView.image = image
     }
     
@@ -24,6 +30,7 @@ final class CityBarButtonItem: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setupView()
     }
     
     required init?(coder: NSCoder) {
@@ -35,7 +42,7 @@ final class CityBarButtonItem: UIView {
     }
 }
 
-private extension CityBarButtonItem {
+private extension CityBarButtonView {
     func setupView() {
         addSubViews()
         setupConstraints()

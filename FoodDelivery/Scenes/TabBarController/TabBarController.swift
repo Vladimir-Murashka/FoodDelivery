@@ -27,7 +27,10 @@ private extension TabBarController {
         let orderNavigationController = UINavigationController(rootViewController: orderViewController)
         
         UITabBarItem.appearance().setTitleTextAttributes(
-            [NSAttributedString.Key.font:UIFont.systemFont(ofSize: 13, weight: .regular)],
+            [NSAttributedString.Key.font:UIFont.systemFont(
+                ofSize: 13,
+                weight: .regular
+            )],
             for: .normal
         )
         
