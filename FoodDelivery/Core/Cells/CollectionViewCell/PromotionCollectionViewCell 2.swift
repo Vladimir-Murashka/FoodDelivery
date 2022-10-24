@@ -38,6 +38,7 @@ final class PromotionCollectionViewCell: UICollectionViewCell {
 private extension PromotionCollectionViewCell {
     func setupCell() {
         backgroundColor = .clear
+        contentView.backgroundColor = .clear
         contentView.layer.cornerRadius = 10
         contentView.clipsToBounds = true
         addSubViews()
