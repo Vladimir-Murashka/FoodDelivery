@@ -53,7 +53,7 @@ private extension CategoriesHeaderView {
         let label = UILabel()
         label.text = categories[index].title
         label.sizeToFit()
-        return label.frame.size.width
+        return label.frame.size.width + 32
     }
     
     func setupView() {

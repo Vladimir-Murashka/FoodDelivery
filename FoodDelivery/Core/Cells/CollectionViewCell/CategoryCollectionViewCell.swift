@@ -13,6 +13,7 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
     
     private let titleLabel = make(UILabel()) { label in
         label.layer.cornerRadius = 16
+        label.textAlignment = .center
         label.clipsToBounds = true
         label.layer.borderColor = UIColor.purple.cgColor
     }
