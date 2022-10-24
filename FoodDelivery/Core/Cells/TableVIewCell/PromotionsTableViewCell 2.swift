@@ -59,6 +59,7 @@ private extension PromotionsTableViewCell {
     func setupCell() {
         backgroundColor = .clear
         selectionStyle = .none
+        contentView.backgroundColor = .clear
         addSubViews()
         setupConstraints()
     }

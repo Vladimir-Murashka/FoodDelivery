@@ -96,6 +96,7 @@ final class ProductTableViewCell: UITableViewCell {
 
 private extension ProductTableViewCell {
     func setupCell() {
+        backgroundColor = .systemBackground
         addSubViews()
         setupConstraints()
     }

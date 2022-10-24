@@ -49,7 +49,6 @@ private extension CategoryCollectionViewCell {
     
     func setupContentView() {
         backgroundColor = .clear
-        contentView.backgroundColor = .clear
         contentView.layer.cornerRadius = 10
         contentView.clipsToBounds = true
     }

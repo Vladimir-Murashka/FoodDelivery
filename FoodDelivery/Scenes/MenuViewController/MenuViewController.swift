@@ -9,7 +9,9 @@ import UIKit
 
 // MARK: - MenuViewProtocol
 
-protocol MenuViewProtocol: UIViewController {}
+protocol MenuViewProtocol: UIViewController {
+    func updateTableVIew(_ sections: [Section])
+}
 
 // MARK: - MenuViewController
 
@@ -25,78 +27,16 @@ final class MenuViewController: UIViewController {
         tableView.dataSource = self
         tableView.customRegister(PromotionsTableViewCell.self)
         tableView.customRegister(ProductTableViewCell.self)
+        tableView.backgroundColor = .clear
     }
     
-    private var sections: [Section] = [
-        Section.init(
-            type: .promotions,
-            rows: [
-                .promotions(
-                    PromotionsTableViewCellViewModel(promotions: [
-                        .init(imageUrl: ""),
-                        .init(imageUrl: ""),
-                        .init(imageUrl: ""),
-                        .init(imageUrl: ""),
-                        .init(imageUrl: ""),
-                        .init(imageUrl: ""),
-                        .init(imageUrl: "")
-                    ])
-                )
-            ]
-        ),
-        Section.init(
-            type: .products(
-                CategoriesHeaderViewModel(categories: [
-                    CategoryCellViewModel(title: "Пацца", isSelected: true),
-                    CategoryCellViewModel(title: "Хинкали", isSelected: false),
-                    CategoryCellViewModel(title: "Десерты", isSelected: false),
-                    CategoryCellViewModel(title: "Мангал", isSelected: false),
-                    CategoryCellViewModel(title: "Выпечка", isSelected: false),
-                    CategoryCellViewModel(title: "Суши", isSelected: false),
-                    CategoryCellViewModel(title: "Роллы", isSelected: false),
-                    CategoryCellViewModel(title: "Напитки", isSelected: false),
-                ])),
-            rows: [
-                .product(
-                    ProductCellViewModel(
-                        title: "Ветчина и грибы",
-                        descpition: "Ветчина,шампиньоны, увеличинная порция моцареллы, томатный соус",
-                        price: "от 345 р",
-                        imageUrl: ""
-                    )
-                ),
-                .product(
-                    ProductCellViewModel(
-                        title: "Ветчина",
-                        descpition: "Ветчина,шампиньоны",
-                        price: "от 145 р",
-                        imageUrl: ""
-                    )
-                ),
-                .product(
-                    ProductCellViewModel(
-                        title: "Ветчина и грибы",
-                        descpition: "Ветчина,шампиньоны, увеличинная порция моцареллы, томатный соус",
-                        price: "от 345 р",
-                        imageUrl: ""
-                    )
-                ),
-                .product(
-                    ProductCellViewModel(
-                        title: "Ветчина и грибы",
-                        descpition: "Ветчина,шампиньоны, увеличинная порция моцареллы, томатный соус",
-                        price: "от 345 р",
-                        imageUrl: ""
-                    )
-                )
-            ]
-        )
-    ]
+    private var sections: [Section] = []
     
     // MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter?.viewDidLoad()
         setupViewController()
     }
     
@@ -112,13 +52,18 @@ final class MenuViewController: UIViewController {
 
 // MARK: - MenuViewProtocol Impl
 
-extension MenuViewController: MenuViewProtocol {}
+extension MenuViewController: MenuViewProtocol {
+    func updateTableVIew(_ sections: [Section]) {
+        self.sections = sections
+        tableView.reloadData()
+    }
+}
 
 // MARK: - PrivateMethods
 
 private extension MenuViewController {
     func setupViewController() {
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .systemGray6
         setupNavigationBar()
         addSubViews()
         setupConstraints()
