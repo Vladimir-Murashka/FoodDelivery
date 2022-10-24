@@ -41,7 +41,7 @@ final class MenuViewController: UIViewController {
     }
     
     // MARK: - Actions
-
+    
     @objc
     private func cityButtonViewPressed() {
         cityButtonView.pushAnimate { [weak self] in
@@ -81,7 +81,7 @@ private extension MenuViewController {
     
     func addSubViews() {
         view.addSubviews(tableView)
-
+        
     }
     
     func setupConstraints() {
@@ -100,28 +100,43 @@ extension MenuViewController: UITableViewDataSource {
         return sections.count
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(
+        _ tableView: UITableView,
+        numberOfRowsInSection section: Int
+    ) -> Int {
         return sections[section].rows.count
     }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
+    func tableView(
+        _ tableView: UITableView,
+        cellForRowAt indexPath: IndexPath
+    ) -> UITableViewCell {
         let row = indexPath.row
         let section = indexPath.section
         let rowType = sections[section].rows[row]
         
         switch rowType {
         case let .promotions(viewModel):
-            let cell = tableView.customDequeueReusableCell(PromotionsTableViewCell.self, indexPath: indexPath)
+            let cell = tableView.customDequeueReusableCell(
+                PromotionsTableViewCell.self,
+                indexPath: indexPath
+            )
             cell.configureCell(with: viewModel)
             return cell
         case let .product(viewModel):
-            let cell = tableView.customDequeueReusableCell(ProductTableViewCell.self, indexPath: indexPath)
+            let cell = tableView.customDequeueReusableCell(
+                ProductTableViewCell.self,
+                indexPath: indexPath
+            )
             cell.configureCell(with: viewModel)
             return cell
         }
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(
+        _ tableView: UITableView,
+        viewForHeaderInSection section: Int
+    ) -> UIView? {
         switch sections[section].type {
         case .promotions:
             return nil
@@ -133,7 +148,10 @@ extension MenuViewController: UITableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(
+        _ tableView: UITableView,
+        heightForHeaderInSection section: Int
+    ) -> CGFloat {
         switch sections[section].type {
         case .promotions:
             return 0
@@ -144,7 +162,10 @@ extension MenuViewController: UITableViewDataSource {
 }
 
 extension MenuViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(
+        _ tableView: UITableView,
+        didSelectRowAt indexPath: IndexPath
+    ) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

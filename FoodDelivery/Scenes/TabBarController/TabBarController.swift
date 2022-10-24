@@ -36,13 +36,13 @@ private extension TabBarController {
         
         menuNavigationController.tabBarItem.title = "Меню"
         menuNavigationController.tabBarItem.image = UIImage(named: "Menu")
-
+        
         contactNavigationController.tabBarItem.title = "Контакты"
         contactNavigationController.tabBarItem.image = UIImage(named: "Contact")
-
+        
         profileNavigationController.tabBarItem.title = "Профиль"
         profileNavigationController.tabBarItem.image = UIImage(named: "Profile")
-
+        
         orderNavigationController.tabBarItem.title = "Корзина"
         orderNavigationController.tabBarItem.image = UIImage(named: "Order")
         

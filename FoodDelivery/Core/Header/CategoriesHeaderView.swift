@@ -16,10 +16,18 @@ final class CategoriesHeaderView: UITableViewHeaderFooterView {
     private lazy var collectionViewLayout = make(UICollectionViewFlowLayout()) { layout in
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 8
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        layout.sectionInset = UIEdgeInsets(
+            top: 0,
+            left: 16,
+            bottom: 0,
+            right: 16
+        )
     }
     
-    private lazy var collectionView = make(UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)) { collectionView in
+    private lazy var collectionView = make(UICollectionView(
+        frame: .zero,
+        collectionViewLayout: collectionViewLayout
+    )) { collectionView in
         collectionView.backgroundColor = .clear
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -68,9 +76,15 @@ private extension CategoriesHeaderView {
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24),
+            collectionView.topAnchor.constraint(
+                equalTo: contentView.topAnchor,
+                constant: 24
+            ),
             collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -24),
+            collectionView.bottomAnchor.constraint(
+                equalTo: contentView.bottomAnchor,
+                constant: -24
+            ),
             collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             collectionView.heightAnchor.constraint(equalToConstant: 32)
         ])
@@ -80,13 +94,22 @@ private extension CategoriesHeaderView {
 // MARK: - UICollectionViewDataSource
 
 extension CategoriesHeaderView: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        numberOfItemsInSection section: Int
+    ) -> Int {
         return categories.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
         let viewModel = categories[indexPath.item]
-        let cell = collectionView.customDequeueReusableCell(CategoryCollectionViewCell.self, indexPath: indexPath)
+        let cell = collectionView.customDequeueReusableCell(
+            CategoryCollectionViewCell.self,
+            indexPath: indexPath
+        )
         cell.configureCell(with: viewModel)
         return cell
     }
@@ -95,7 +118,10 @@ extension CategoriesHeaderView: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 
 extension CategoriesHeaderView: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        didSelectItemAt indexPath: IndexPath
+    ) {
         print(#function)
     }
 }

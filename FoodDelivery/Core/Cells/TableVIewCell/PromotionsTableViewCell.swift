@@ -16,11 +16,22 @@ final class PromotionsTableViewCell: UITableViewCell {
     private lazy var collectionViewLayout = make(UICollectionViewFlowLayout()) { layout in
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 16
-        layout.itemSize = CGSize(width: 300, height: 112)
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        layout.itemSize = CGSize(
+            width: 300,
+            height: 112
+        )
+        layout.sectionInset = UIEdgeInsets(
+            top: 0,
+            left: 16,
+            bottom: 0,
+            right: 16
+        )
     }
     
-    private lazy var collectionView = make(UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)) { collectionView in
+    private lazy var collectionView = make(UICollectionView(
+        frame: .zero,
+        collectionViewLayout: collectionViewLayout
+    )) { collectionView in
         collectionView.backgroundColor = .clear
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -81,13 +92,22 @@ private extension PromotionsTableViewCell {
 // MARK: - UICollectionViewDataSource
 
 extension PromotionsTableViewCell: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        numberOfItemsInSection section: Int
+    ) -> Int {
         return promotions.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
         let viewModel = promotions[indexPath.item]
-        let cell = collectionView.customDequeueReusableCell(PromotionCollectionViewCell.self, indexPath: indexPath)
+        let cell = collectionView.customDequeueReusableCell(
+            PromotionCollectionViewCell.self,
+            indexPath: indexPath
+        )
         cell.configureCell(with: viewModel)
         return cell
     }
@@ -96,7 +116,10 @@ extension PromotionsTableViewCell: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 
 extension PromotionsTableViewCell: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        didSelectItemAt indexPath: IndexPath
+    ) {
         print(#function)
     }
 }
@@ -104,13 +127,11 @@ extension PromotionsTableViewCell: UICollectionViewDelegate {
 // MARK: - UICollectionViewDelegateFlowLayout
 
 extension PromotionsTableViewCell: UICollectionViewDelegateFlowLayout {
-//    func collectionView(
-//        _ collectionView: UICollectionView,
-//        layout collectionViewLayout: UICollectionViewLayout,
-//        sizeForItemAt indexPath: IndexPath
-//    ) -> CGSize {
-//        <#code#>
-//    }
+    //    func collectionView(
+    //        _ collectionView: UICollectionView,
+    //        layout collectionViewLayout: UICollectionViewLayout,
+    //        sizeForItemAt indexPath: IndexPath
+    //    ) -> CGSize {
+    //        <#code#>
+    //    }
 }
-
-

@@ -80,8 +80,6 @@ final class ProductTableViewCell: UITableViewCell {
             viewModel.price,
             for: .normal
         )
-        
-        // TODO: - load image by url
     }
     
     // MARK: - Actions
