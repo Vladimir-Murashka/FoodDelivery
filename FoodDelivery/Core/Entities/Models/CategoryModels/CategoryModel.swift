@@ -8,5 +8,6 @@
 struct CategoryModel {
     let id: Int
     let title: String
-    let isSelected: Bool
+    var isSelected: Bool
 }
+

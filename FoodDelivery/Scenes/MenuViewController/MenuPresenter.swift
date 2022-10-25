@@ -5,6 +5,8 @@
 //  Created by Swift Learning on 18.10.2022.
 //
 
+import Foundation
+
 protocol MenuPresenterProtocol: AnyObject {
     func viewDidLoad()
     func cityButtonViewPressed()
@@ -18,42 +20,20 @@ final class MenuPresenter {
     // MARK: - PrivateProperties
     
     private let sceneBuildManager: Buildable
+    private let apiService: APIServicable
     
-    private var promotions: [PromotionModel] = [
-        .init(id: 0, imageUrl: ""),
-        .init(id: 0, imageUrl: ""),
-        .init(id: 0, imageUrl: ""),
-        .init(id: 0, imageUrl: ""),
-        .init(id: 0, imageUrl: ""),
-        .init(id: 0, imageUrl: ""),
-        .init(id: 0, imageUrl: ""),
-    ]
-    private var categories: [CategoryModel] = [
-        .init(id: 0, title: "title", isSelected: false),
-        .init(id: 0, title: "title2", isSelected: true),
-        .init(id: 0, title: "title3", isSelected: false),
-        .init(id: 0, title: "title4", isSelected: false),
-        .init(id: 0, title: "title5", isSelected: false),
-        .init(id: 0, title: "title6", isSelected: false),
-        .init(id: 0, title: "title7", isSelected: false),
-        .init(id: 0, title: "title8", isSelected: false),
-        .init(id: 0, title: "title9", isSelected: false),
-    ]
-    private var products: [ProductModel] = [
-        .init(id: 0, title: "title", description: "description", price: 10, currency: "Р", imageUrl: ""),
-        .init(id: 0, title: "title2", description: "description2", price: 10, currency: "Р", imageUrl: ""),
-        .init(id: 0, title: "title3", description: "description3", price: 10, currency: "Р", imageUrl: ""),
-        .init(id: 0, title: "title4", description: "description4", price: 10, currency: "Р", imageUrl: ""),
-        .init(id: 0, title: "title5", description: "description5", price: 10, currency: "Р", imageUrl: ""),
-        .init(id: 0, title: "title6", description: "description6", price: 10, currency: "Р", imageUrl: ""),
-        .init(id: 0, title: "title7", description: "description7", price: 10, currency: "Р", imageUrl: ""),
-        .init(id: 0, title: "title8", description: "description8", price: 10, currency: "Р", imageUrl: ""),
-    ]
+    private var promotions: [PromotionModel] = []
+    private var categories: [CategoryModel] = []
+    private var products: [ProductModel] = []
     
     // MARK: - Initializer
     
-    init(sceneBuildManager: Buildable) {
+    init(
+        sceneBuildManager: Buildable,
+        apiService: APIServicable
+    ) {
         self.sceneBuildManager = sceneBuildManager
+        self.apiService = apiService
     }
 }
 
@@ -61,12 +41,67 @@ final class MenuPresenter {
 
 extension MenuPresenter: MenuPresenterProtocol {
     func viewDidLoad() {
-        let sections: [Section] = [
-            makePromotionsSection(),
-            makeProductsSection()
-        ]
-        
-        viewController?.updateTableVIew(sections)
+        DispatchQueue.global().async { [unowned self] in
+            let group = DispatchGroup()
+            group.enter()
+            apiService.fetchPromotions { result in
+                switch result {
+                case .success(let response):
+                    self.promotions = response.map {
+                        PromotionModel($0)
+                    }
+                    print(response.count)
+
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+                group.leave()
+            }
+
+            group.wait()
+            group.enter()
+
+            apiService.fetchCategories { result in
+                switch result {
+                case .success(let response):
+                    self.categories = response.enumerated().map {
+                        CategoryModel(
+                            id: $1.id,
+                            title: $1.title,
+                            isSelected: $0 == 0 ? true : false
+                        )
+                    }
+                    print(response.count)
+
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+                group.leave()
+            }
+
+            group.wait()
+            group.enter()
+
+            apiService.fetchProducts { result in
+                switch result {
+                case .success(let response):
+                    self.products = response.map {
+                        ProductModel($0)
+                    }
+                    print(response.count)
+
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+                group.leave()
+            }
+
+            group.wait()
+
+            group.notify(queue: DispatchQueue.main) {
+                self.updateSections()
+            }
+        }
     }
     
     func cityButtonViewPressed() {
@@ -120,6 +155,13 @@ private extension MenuPresenter {
         )
         return section
     }
+
+    func updateSections() {
+        let sections: [Section] = [
+            makePromotionsSection(),
+            makeProductsSection()
+        ]
+
+        viewController?.updateTableVIew(sections)
+    }
 }
-
-

@@ -8,4 +8,14 @@
 struct PromotionModel {
     let id: Int
     let imageUrl: String
+
+    init(id: Int, imageUrl: String) {
+        self.id = id
+        self.imageUrl = imageUrl
+    }
+
+    init(_ response: PromotionResponseModel) {
+        id = response.id
+        imageUrl = response.imageUrl
+    }
 }
