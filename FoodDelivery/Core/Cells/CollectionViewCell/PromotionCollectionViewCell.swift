@@ -29,7 +29,7 @@ final class PromotionCollectionViewCell: UICollectionViewCell {
     // MARK: - PublicMethods
     
     func configureCell(with viewModel: PromotionCollectionViewCellViewModel) {
-        // TODO: - load image by url
+        promotiontImageView.setImage(urlString: viewModel.imageUrl)
     }
 }
 

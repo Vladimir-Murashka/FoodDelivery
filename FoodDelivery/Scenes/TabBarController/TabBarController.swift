@@ -8,6 +8,12 @@
 import UIKit
 
 final class TabBarController: UITabBarController {
+    // MARK: - PrivateProperties
+    
+    private let sceneBuildManager: Buildable = SceneBuildManager()
+    
+    // MARK: - LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTabBarController()
@@ -16,7 +22,7 @@ final class TabBarController: UITabBarController {
 
 private extension TabBarController {
     func setupTabBarController() {
-        let menuViewController = MenuViewController()
+        let menuViewController = sceneBuildManager.buildMenuScreen()
         let contactViewController = ContactViewController()
         let profileViewController = ProfileViewController()
         let orderViewController = OrderViewController()

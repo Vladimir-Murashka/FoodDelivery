@@ -80,6 +80,8 @@ final class ProductTableViewCell: UITableViewCell {
             viewModel.price,
             for: .normal
         )
+
+        productImageView.setImage(urlString: viewModel.imageUrl)
     }
     
     // MARK: - Actions

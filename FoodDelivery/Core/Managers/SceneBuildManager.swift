@@ -10,7 +10,17 @@ protocol Buildable {
     func buildTabBarScreen() -> TabBarController
 }
 
-final class SceneBuildManager {}
+final class SceneBuildManager {
+    private let apiService: APIServicable
+    private let networkService: NetworkService
+    private let decoderService: Decoderable
+
+    init() {
+        decoderService = DecoderService()
+        networkService = NetworkService(decoderService: decoderService)
+        apiService = APIService(networkService: networkService)
+    }
+}
 
 extension SceneBuildManager: Buildable {
     func buildTabBarScreen() -> TabBarController {
@@ -21,7 +31,10 @@ extension SceneBuildManager: Buildable {
     
     func buildMenuScreen() -> MenuViewController {
         let viewController = MenuViewController()
-        let presenter = MenuPresenter(sceneBuildManager: self)
+        let presenter = MenuPresenter(
+            sceneBuildManager: self,
+            apiService: apiService
+        )
         
         viewController.presenter = presenter
         presenter.viewController = viewController

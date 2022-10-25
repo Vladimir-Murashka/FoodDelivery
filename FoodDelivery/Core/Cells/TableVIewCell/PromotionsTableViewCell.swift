@@ -126,12 +126,4 @@ extension PromotionsTableViewCell: UICollectionViewDelegate {
 
 // MARK: - UICollectionViewDelegateFlowLayout
 
-extension PromotionsTableViewCell: UICollectionViewDelegateFlowLayout {
-    //    func collectionView(
-    //        _ collectionView: UICollectionView,
-    //        layout collectionViewLayout: UICollectionViewLayout,
-    //        sizeForItemAt indexPath: IndexPath
-    //    ) -> CGSize {
-    //        <#code#>
-    //    }
-}
+extension PromotionsTableViewCell: UICollectionViewDelegateFlowLayout {}
