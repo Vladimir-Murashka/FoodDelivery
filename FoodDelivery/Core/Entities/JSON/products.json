@@ -1,10 +1,123 @@
-{
-	"anning": {
-		"name": "Mary Anning",
-		"dates": "1799-1847",
-		"field": "Palaeontology",
-		"bio": "Mary Anning (21 May 1799 – 9 March 1847) was an English fossil collector, dealer, and palaeontologist who became known around the world for important finds she made in Jurassic marine fossil beds in the cliffs along the English Channel at Lyme Regis in the county of Dorset in Southwest England.",
-		"country": "uk",
-		"source": "https://en.wikipedia.org/wiki/Mary_Anning"
+[
+	{
+		"id": 1,
+		"title": "Кольца кальмара",
+		"description": "Кляр, кальмар, соус чесночный",
+		"price": 250,
+		"currency": "Р",
+		"imageUrl": "https://static.tildacdn.com/tild3865-6161-4361-a464-643037663335/_.jpg"
 	},
-}
+    {
+        "id": 1,
+        "title": "Чесночные гренки",
+        "description": "Гренки, чесночное масло, соус чесночный",
+        "price": 200,
+        "currency": "Р",
+        "imageUrl": "https://fsin-dostavka.su/800/600/https/static.tildacdn.com/tild6263-3863-4462-a236-643761663563/-1800px.jpg"
+    },
+    {
+        "id": 1,
+        "title": "Сырные шарики",
+        "description": "Моцарелла, гауда, сулугуни, прованские травы",
+        "price": 300,
+        "currency": "Р",
+        "imageUrl": "https://medaboutme.ru/upload/medialibrary/5df/shutterstock_129785735.jpg"
+    },
+    {
+        "id": 2,
+        "title": "Суп Лапша с курицей",
+        "description": "Куриный бульон, лапша, филе куриное, морковь, отварное куриное яйцо, зелень",
+        "price": 250,
+        "currency": "Р",
+        "imageUrl": "https://recept-borscha.ru/wp-content/uploads/b/6/8/b680d9d563f7711ef11b12aca00098f2.jpeg"
+    },
+    {
+        "id": 2,
+        "title": "Борщ Наваристый с говядиной",
+        "description": "Бульон из говядины, свекла, морковь, лук, капуста, картофель, говядина, сметана",
+        "price": 200,
+        "currency": "Р",
+        "imageUrl": "https://recept-borscha.ru/wp-content/uploads/4/7/a/47abeeb931b474ffea113ef475038793.jpeg"
+    },
+    {
+        "id": 3,
+        "title": "Бургер Батин курятник",
+        "description": "Булочка с кунжутом, куриная котлета, лист салата, помидор свежий, огурец маринованный, сыр чеддер, сырный соус, кетчуп",
+        "price": 370,
+        "currency": "Р",
+        "imageUrl": "https://www.dostavka-gussi.com/storage/foods/LlAKvr5laddJ1ijdArgzDSrCiY3WoACOVfjZJnX1.jpeg"
+    },
+    {
+        "id": 3,
+        "title": "Бургер Старый друг",
+        "description": "Булочка с кунжутом, котлета из мраморной говядины (прожарка well done), лист салата, помидор свежий, огурец маринованный, сыр чеддер, сырный соус, кетчуп",
+        "price": 410,
+        "currency": "Р",
+        "imageUrl": "http://old.chpt.ru/files/images/burger_1.png"
+    },
+    {
+        "id": 4,
+        "title": "Пицца Маргарита с соусом песто",
+        "description": "Моцарелла, томатный соус, песто, моцарелла рассольная. Размер порции на выбор",
+        "price": 320,
+        "currency": "Р",
+        "imageUrl": "https://sun9-62.userapi.com/impg/P0ob5DgKx1oE_XCyKcrtaZSzJKwUfttEu4ftMw/LxUGSP3cTZc.jpg?size=604x521&quality=96&sign=1f250f2f4f01cb8dea4574a7fffe3e7c&type=album"
+    },
+    {
+        "id": 4,
+        "title": "Пицца с дарами моря",
+        "description": "Моцарелла, сливочный соус, кальмар, осьминог, креветка, мидии, цедра лайма",
+        "price": 410,
+        "currency": "Р",
+        "imageUrl": "https://msk.vse-pirogi.ru/wp-content/uploads/sites/2/2018/09/281-2.png"
+    },
+    {
+        "id": 4,
+        "title": "Пицца Том Ям",
+        "description": "Моцарелла, соус Том Ям, креветки, вяленые томаты, цедра лайма",
+        "price": 450,
+        "currency": "Р",
+        "imageUrl": "https://mnogopizza.com/upload/gaufrette/f/5/8/f58dc24176fa086c06652c02a7e36f26a78fe600/no-name.png"
+    },
+    {
+        "id": 4,
+        "title": "Пицца Четыре сыра",
+        "description": "Моцарелла, сливочный соус, дорблю, пармезан, моцарелла рассольная, грецкий орех. Размер порции на выбор",
+        "price": 350,
+        "currency": "Р",
+        "imageUrl": "https://attuale.ru/wp-content/uploads/2018/11/aa8a55d7-4cf0-4847-835f-a63500fc858c.jpg"
+    },
+    {
+        "id": 5,
+        "title": "Спагетти Карбонара",
+        "description": "Спагетти, бекон, сливки, масло оливковое, сыр пармезан, яйцо куриное",
+        "price": 370,
+        "currency": "Р",
+        "imageUrl": "https://artamonov-group.ru/upload/iblock/5f8/5f85d24d77f9fa9b9e881e1d9311a117.jpg"
+    },
+    {
+        "id": 5,
+        "title": "Фетучини с курицей и вешенками",
+        "description": "Спагетти, бекон, сливки, масло оливковое, сыр пармезан, яйцо куриное",
+        "price": 370,
+        "currency": "Р",
+        "imageUrl": "https://рецепты.здоровое-питание.рф/upload/iblock/507/507e8855c3096e689d82d86d6e6ea3b0.jpg"
+    },
+    {
+        "id": 6,
+        "title": "Тирамису",
+        "description": "",
+        "price": 240,
+        "currency": "Р",
+        "imageUrl": "http://klublady.ru/uploads/posts/2022-02/1644663043_68-klublady-ru-p-desert-tiramisu-foto-72.jpg"
+    },
+    {
+        "id": 6,
+        "title": "Медовик",
+        "description": "",
+        "price": 250,
+        "currency": "Р",
+        "imageUrl": "https://avatars.dzeninfra.ru/get-zen_doc/1704967/pub_6009900771e18a0f61ec0257_600990c79444cb7e9888c9b2/scale_1200"
+    },
+]
+
