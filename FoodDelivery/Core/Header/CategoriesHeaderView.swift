@@ -8,6 +8,7 @@
 import UIKit
 
 final class CategoriesHeaderView: UITableViewHeaderFooterView {
+    weak var delegate: CategoriesHeaderViewModelDelegate?
     
     // MARK: - PrivateProperties
     
@@ -46,11 +47,16 @@ final class CategoriesHeaderView: UITableViewHeaderFooterView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - PublicMethods
+    // MARK: - Methods
     
     func configureView(with viewModel: CategoriesHeaderViewModel) {
         categories = viewModel.categories
         collectionView.reloadData()
+        self.delegate = viewModel.delegate
+    }
+    
+    func scrollToItem(at indexPath: IndexPath) {
+        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
 }
 
@@ -122,7 +128,8 @@ extension CategoriesHeaderView: UICollectionViewDelegate {
         _ collectionView: UICollectionView,
         didSelectItemAt indexPath: IndexPath
     ) {
-        print(#function)
+        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        delegate?.didTapCategory(at: indexPath.item)
     }
 }
 

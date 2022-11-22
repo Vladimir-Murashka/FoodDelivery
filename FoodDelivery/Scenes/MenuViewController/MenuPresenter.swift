@@ -10,6 +10,7 @@ import Foundation
 protocol MenuPresenterProtocol: AnyObject {
     func viewDidLoad()
     func cityButtonViewPressed()
+    func viewDidScrollToCell(at indexPath: IndexPath)
 }
 
 // MARK: - MenuPresenter
@@ -25,6 +26,8 @@ final class MenuPresenter {
     private var promotions: [PromotionModel] = []
     private var categories: [CategoryModel] = []
     private var products: [ProductModel] = []
+    
+    private var currentProductCellIndexPath = IndexPath(row: 0, section: 1)
     
     // MARK: - Initializer
     
@@ -107,6 +110,35 @@ extension MenuPresenter: MenuPresenterProtocol {
     func cityButtonViewPressed() {
         print("cityButtonViewPressed")
     }
+    
+    func viewDidScrollToCell(at indexPath: IndexPath) {
+        guard currentProductCellIndexPath != indexPath else {
+            return
+        }
+        
+        currentProductCellIndexPath = indexPath
+        
+        let categoryId = products[indexPath.row].categoryId
+        
+        let categoryIndex = categories.firstIndex { category in
+            category.id == categoryId
+        }
+        
+        categories.enumerated().forEach { index, category in
+            categories[index].isSelected = categoryIndex == index
+        }
+        
+        let viewModel = makeCategoriesHeaderViewModel()
+        viewController?.updateTableViewHeader(viewModel)
+        
+        guard let item = categoryIndex else {
+            return
+        }
+        
+        let indexPath = IndexPath(item: item, section: 0)
+            
+        viewController?.headerViewScrollToItem(at: indexPath)
+    }
 }
 
 
@@ -132,7 +164,7 @@ private extension MenuPresenter {
                 isSelected: model.isSelected
             )
         }
-        return CategoriesHeaderViewModel(categories: categoriesViewModel)
+        return CategoriesHeaderViewModel(categories: categoriesViewModel, delegate: self)
     }
     
     func makeProductsSection() -> Section {
@@ -163,5 +195,28 @@ private extension MenuPresenter {
         ]
 
         viewController?.updateTableVIew(sections)
+    }
+}
+
+extension MenuPresenter: CategoriesHeaderViewModelDelegate {
+    func didTapCategory(at index: Int) {
+        
+        categories.enumerated().forEach { categoryIndex, category in
+            categories[categoryIndex].isSelected = categoryIndex == index
+        }
+        
+        let viewModel = makeCategoriesHeaderViewModel()
+        viewController?.updateTableViewHeader(viewModel)
+        
+        let categoryId = categories[index].id
+        let productIndex = products.firstIndex { product in
+            product.categoryId == categoryId
+        }
+        guard let item = productIndex else {
+            return
+        }
+        
+        let indexPath: IndexPath = [1, item]
+        viewController?.tableViewScrollToRow(at: indexPath)
     }
 }

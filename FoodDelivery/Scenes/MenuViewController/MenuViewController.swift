@@ -11,6 +11,9 @@ import UIKit
 
 protocol MenuViewProtocol: UIViewController {
     func updateTableVIew(_ sections: [Section])
+    func tableViewScrollToRow(at indexPath: IndexPath)
+    func updateTableViewHeader(_ viewModel: CategoriesHeaderViewModel)
+    func headerViewScrollToItem(at indexPath: IndexPath)
 }
 
 // MARK: - MenuViewController
@@ -30,6 +33,7 @@ final class MenuViewController: UIViewController {
         tableView.backgroundColor = .clear
     }
     
+    private let headerView = CategoriesHeaderView()
     private var sections: [Section] = []
     
     // MARK: - LifeCycle
@@ -57,6 +61,19 @@ extension MenuViewController: MenuViewProtocol {
         self.sections = sections
         tableView.reloadData()
     }
+    
+    func tableViewScrollToRow(at indexPath: IndexPath) {
+        tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+    }
+    
+    func updateTableViewHeader(_ viewModel: CategoriesHeaderViewModel) {
+        headerView.configureView(with: viewModel)
+    }
+    
+    func headerViewScrollToItem(at indexPath: IndexPath) {
+        headerView.scrollToItem(at: indexPath)
+    }
+
 }
 
 // MARK: - PrivateMethods
@@ -142,7 +159,6 @@ extension MenuViewController: UITableViewDataSource {
             return nil
             
         case .products(let viewModel):
-            let headerView = CategoriesHeaderView()
             headerView.configureView(with: viewModel)
             return headerView
         }
@@ -167,5 +183,21 @@ extension MenuViewController: UITableViewDelegate {
         didSelectRowAt indexPath: IndexPath
     ) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+extension MenuViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard scrollView == tableView else {
+            return
+        }
+        guard let cell = tableView.visibleCells.first as? ProductTableViewCell else {
+            return
+        }
+        
+        guard let indexPath = tableView.indexPath(for: cell) else {
+            return
+        }
+        presenter?.viewDidScrollToCell(at: indexPath)
     }
 }
